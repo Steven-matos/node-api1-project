@@ -34,16 +34,21 @@ server.get("/api/users", (req, res) => {
   }
 });
 
-server.get('/api/users/:id', (req, res) => {
-    const {id} = req.params
-    if(!id){
-        res
-          .status(404)
-          .json({ message: "The user with the specified ID does not exist." });
-    } else if (id){
-        res.status(200).json()
-    }
-})
+server.get("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    res
+      .status(404)
+      .json({ message: "The user with the specified ID does not exist." });
+  } else if (id) {
+    const user = users.filter(user => id === user.id);
+    res.status(200).json(user);
+  } else {
+    res
+      .status(500)
+      .json({ errorMessage: "The user information could not be retrieved." });
+  }
+});
 
 const PORT = 5000;
 server.listen(PORT, () =>
