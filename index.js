@@ -63,8 +63,7 @@ server.delete("/api/users/:id", (req, res) => {
       .json({ message: "The user with the specified ID does not exist." });
   } else if (user.length > 0) {
     res.status(200).json({ message: "User Deleted" });
-    let newUser = users.filter(user => id !== user.id);
-    users = newUser;
+    users = users.filter(user => id !== user.id);
   } else {
     res.status(500).json({
       errorMessage: "The user information could not be retrieved."
