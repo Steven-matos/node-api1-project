@@ -28,7 +28,7 @@ server.post("/api/users", (req, res) => {
 
 server.get("/api/users", (req, res) => {
   if (!users) {
-    res.status(500).json({
+    res.status(404).json({
       errorMessage: "The users information could not be retrieved."
     });
   } else {
